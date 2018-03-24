@@ -1,0 +1,17 @@
+<section id="home-section">
+
+	 <h1>{{userProfile.title}}</h1>
+ 	 <h2>My favorite hero is: {{userProfile.myHero}}</h2>
+	 <p>Heroes:</p>
+	 <ul>
+	    <li *ngFor="let hero of userProfile.heroes">
+	      {{ hero }}
+	    </li>
+	 </ul>
+	 <p *ngIf="userProfile.heroes.length > 5">There are many heroes!</p>
+	  
+	 <button [disabled]="userProfile.isUnchanged">Cancel is disabled</button>
+	 <p>My name is <strong>{{ userProfile.name | capializeFirstChar }}</strong>.</p>
+
+</section>
+

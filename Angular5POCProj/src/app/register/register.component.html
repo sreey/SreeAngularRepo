@@ -1,0 +1,58 @@
+<section id="home-section">
+	<div class="container">
+    <h1>Register Form</h1>
+    <form #userRegisterForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">FirstName</label>
+        <input type="text" class="form-control" name="firstName" id="firstName" required [(ngModel)]="userRegister.firstName" #firstName="ngModel">
+      	<div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+		 	First Name is required
+		</div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">LastName</label>
+        <input type="text" class="form-control" name="lastName" id="lastName" required [(ngModel)]="userRegister.lastName" #lastName="ngModel">
+      		<div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+		 	Last Name is required
+		</div>
+      </div>
+      <div class="form-group">
+		  <label for="gender">Gender</label>
+		  <select class="form-control" id="gender" required [(ngModel)]="userRegister.gender" name="gender">
+		    <option *ngFor="let g of gender" [value]="g">{{g}}</option>
+		  </select>
+	  </div>
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input type="text" class="form-control" name="email" id="email" required [(ngModel)]="userRegister.email" #email="ngModel">
+      	<div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+		 	Email is required
+		</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="phoneNumber">Phone #</label>
+        <input type="text" class="form-control" 
+					        name="phoneNumber" 
+					        id="phoneNumber" 
+					        required [(ngModel)]="userRegister.phoneNumber" 
+					        #phoneNumber="ngModel"
+					        minlength="10" maxlength="10" #spy appOnlyNumbers>
+		
+     	<div [hidden]="phoneNumber.valid || phoneNumber.pristine" class="alert alert-danger">
+		 	Phone Number is required
+		</div>
+		
+		<div *ngIf="phoneNumber?.errors?.minlength" class="alert alert-danger">
+  			Phone Number must be at least 10 characters long.
+  		</div>
+      </div>
+
+      <button type="submit" [routerLink]="['../home']" class="btn btn-success" (click)="newUser()" [disabled]="!userRegisterForm.form.valid">Submit</button>
+
+    </form>
+    CSS CODE for phone number: To be Removed: {{spy.className}}<br/>
+  	Debug Code:To be Removed;  {{diagnostic}}
+</div>
+</section>
